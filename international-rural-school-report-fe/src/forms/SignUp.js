@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { signup } from '../actions';
 
 class SignUp extends Component {
     state = {
@@ -50,4 +52,8 @@ class SignUp extends Component {
     }
 }
 
-export default SignUp
+
+export default connect(
+    null,
+    { signup }
+)(SignUp)

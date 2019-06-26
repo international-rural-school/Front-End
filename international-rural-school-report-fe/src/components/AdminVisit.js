@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function AdminVisits() {
+export default function AdminVisit() {
     return (
         <div className="container section">
             <div className="card z-depth-0">
