@@ -1,12 +1,12 @@
 
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
 import SignIn from './forms/SignIn';
 import SignUp from './forms/SignUp';
 import NavTop from './components/NavTop';
+import Dashboard from './components/Dashboard';
 
-import Dashboard from './components/Dashboard'
 
 class App extends Component {
   render() {
@@ -14,6 +14,17 @@ class App extends Component {
       <div>
         <div> 
           <NavTop />
+          <Route
+            exact
+            path="/"
+            render={() =>
+              localStorage.getItem("token") ? (
+                <Dashboard />
+              ) : (
+                <Redirect to="/login" />
+              )
+            }
+          />
         </div>
         <div>
           <Switch>

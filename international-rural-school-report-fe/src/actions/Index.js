@@ -2,7 +2,6 @@ import axios from "axios";
 
 export const SUCCESS = "SUCCESS";
 export const ERROR = "ERROR";
-
 export const SIGNING_IN = "SIGNING_IN";
 export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
 export const SIGNIN_FAIL = "SIGNIN_FAIL";
@@ -13,7 +12,7 @@ export const signin = user => dispatch => {
   });
   axios
     .post(
-      // "url/login",
+      "https://ruralschoolapp.herokuapp.com/oauth/authorize",
       user
     )
     .then(res => {
@@ -43,7 +42,7 @@ export const signup = user => dispatch => {
   });
   axios
     .post(
-      // "url/signup",
+      "https://ruralschoolapp.herokuapp.com/users/user",
       user
     )
     .then(res => {
@@ -65,7 +64,7 @@ export const FETCHING_ISSUES = "FETCHING_ISSUES";
 export const getIssues = () => dispatch => {
   dispatch({ type: FETCHING_ISSUES });
   axios
-    // .get("url/issues")
+    .get("https://ruralschoolapp.herokuapp.com/error")
     .then(res => {
       console.log(res);
       dispatch({ type: SUCCESS, payload: res.data });
@@ -76,6 +75,7 @@ export const getIssues = () => dispatch => {
     });
 };
 
+
 export const ADDING_ISSUE = "ADDING_ISSUE";
 export const DELETING_ISSUE = "DELETING_ISSUE";
 
@@ -83,9 +83,7 @@ export const addIssue = issue => dispatch => {
   dispatch({ type: ADDING_ISSUE });
   console.log("issue", issue);
   axios
-    // .post("url/issues", 
-      issue
-    )
+    .post("https://ruralschoolapp.herokuapp.com/error", issue)
     .then(res => {
       dispatch({ type: SUCCESS, payload: res.data });
       console.log(res);
@@ -98,7 +96,7 @@ export const addIssue = issue => dispatch => {
 export const deleteIssue = id => dispatch => {
   dispatch({ type: DELETING_ISSUE });
   axios
-    // .delete(`url/issues/${id}`)
+    .delete(`https://ruralschoolapp.herokuapp.com/error/${id}`)
     .then(res => {
       dispatch({ type: SUCCESS, payload: res.data });
     })
@@ -117,7 +115,7 @@ export function editIssue(id, issue) {
     console.log(id, issue);
     axios
       .put(
-        // `url/issues/${id}`,
+        `https://ruralschoolapp.herokuapp.com/error/${id}`,
         issue
       )
       .then(response => {

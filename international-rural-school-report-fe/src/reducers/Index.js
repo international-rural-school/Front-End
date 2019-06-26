@@ -13,7 +13,7 @@ import {
     EDITING,
     EDITED,
     FAILURE
-  } from '../actions/Index';
+  } from '../actions';
   
   export const initialState = {
     user: {},

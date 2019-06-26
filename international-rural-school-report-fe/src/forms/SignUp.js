@@ -17,9 +17,22 @@ class SignUp extends Component {
         })
     }
 
-    handleSubmit = (e) => {
+    handleSelect = e => {
+        console.log(e.target.value);
+        this.setState({
+            authLevel: e.target.value
+        }
+        )
+    }
+
+    handleSubmit = e => {
         e.preventDefault();
-        console.log(this.state);
+        if (this.state.authLevel !== ''){
+        this.props.signup(this.state)
+        this.props.history.push("/login")  
+        } else {
+            alert("Please select your role")
+        }
     }
     
     render() {
@@ -33,7 +46,7 @@ class SignUp extends Component {
                     </div>
                     <div className="input-field">
                         <label htmlFor="password">Password</label>
-                        <input type="text" id='password' onChange={this.handleChange} />
+                        <input type="password" id='password' onChange={this.handleChange} />
                     </div>
                     <div className="input-field">
                         <label htmlFor="firstName">First Name</label>
@@ -42,6 +55,33 @@ class SignUp extends Component {
                     <div className="input-field">
                         <label htmlFor="lastName">Last Name</label>
                         <input type="text" id='lastName' onChange={this.handleChange} />
+                    </div>
+                    <div>
+                    <label htmlFor="admin">
+                        <p>Are you a School Admin or a Board Member?</p>
+                        <input 
+                            checked 
+                            type="radio" 
+                            name="authLevel" 
+                            id="admin" 
+                            onChange={this.handleSelect} 
+                            value={this.state.authLevel}
+                        />
+                        <span>Admin</span>
+                    </label>
+                    </div>
+                    <div>
+                    <label htmlFor="boardMember" >
+                        <input 
+                            checked 
+                            type="radio" 
+                            name="authLevel" 
+                            id="boardMember" 
+                            onChange={this.handleSelect} 
+                            value={this.state.authLevel}
+                        />
+                        <span>Board Member</span>
+                    </label>
                     </div>
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0">submit</button>

@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { signin } from "../actions/Index";
+import { signin } from "../actions";
 
 class SignIn extends Component {
     state = {
         email: '',
         password: ''
     }
-
 
     handleChange = e => {
         this.setState({
@@ -19,9 +18,9 @@ class SignIn extends Component {
 
     handleSignin = e => {
         e.preventDefault();
-        this.props.login(this.state);
+        this.props.signin(this.state);
         setTimeout(() => this.props.history.push("/"), 500);
-    };
+      };
     
     render() {
         return (
@@ -31,7 +30,7 @@ class SignIn extends Component {
                     <div className="input-field">
                         <label htmlFor="email">Email</label>
                         <input 
-                            type="email" 
+                            type="text" 
                             id='email' 
                             onChange={this.handleChange} 
                         />
@@ -39,7 +38,7 @@ class SignIn extends Component {
                     <div className="input-field">
                         <label htmlFor="password">Password</label>
                         <input 
-                            type="text" 
+                            type="password" 
                             id='password' 
                             onChange={this.handleChange} 
                         />
