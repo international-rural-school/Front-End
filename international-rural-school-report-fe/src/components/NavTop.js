@@ -1,14 +1,15 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-function NavTop() {
+function NavTop(props) {
   return (
     <div>
       <nav className="nav-wrapper grey darken-3">
         <div className="container">
           <NavLink to='/' className="brand-logo left">IRSR</NavLink>
           
-          {localStorage.getItem("token") ? 
+          {props.token ? 
           (
             <div>
               <ul className="right">
@@ -32,4 +33,12 @@ function NavTop() {
   )
 }
 
-export default NavTop
+const mstp = state => {
+  return ({
+    token: state.token
+  })
+}
+
+export default connect(
+  mstp,
+)(NavTop)

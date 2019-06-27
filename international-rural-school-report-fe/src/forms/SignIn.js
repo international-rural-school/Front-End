@@ -39,12 +39,14 @@
 //             .catch(err => console.dir(err));
 //     };
 import React from 'react';
+import { signin } from '../actions/index'
+import { connect } from 'react-redux'
 const axios = require('axios');
 // const oauth = require('axios-oauth-client');
 
 
 
-export default class Signin extends React.Component {
+class SignIn extends React.Component {
     
     state = {
         username: '',
@@ -69,6 +71,7 @@ export default class Signin extends React.Component {
                 }
             })
             .then(res => {
+                this.props.signin(res.data.access_token);
                 localStorage.setItem('token', res.data.access_token);
                 this.props.history.push('/dashboard');
 
@@ -137,7 +140,9 @@ export default class Signin extends React.Component {
 //     return bindActionCreators({ signin }, dispatch);
 //   }
   
-//   export default connect(
-//     null,
-//     mapDispatchToProps
-//   )(SignIn);
+
+
+  export default connect(
+    null,
+    { signin }
+  )(SignIn);
