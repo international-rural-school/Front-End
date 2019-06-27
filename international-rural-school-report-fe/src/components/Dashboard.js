@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import NavSide from './NavSide'
 import IssueHub from './IssueHub'
 import IssueAdd from '../forms/IssueAdd'

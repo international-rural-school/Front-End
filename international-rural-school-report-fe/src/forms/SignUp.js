@@ -29,7 +29,7 @@ class SignUp extends Component {
         e.preventDefault();
         if (this.state.authLevel !== ''){
         this.props.signup(this.state)
-        this.props.history.push("/login")  
+        this.props.history.push("/signin")  
         } else {
             alert("Please select your role")
         }
@@ -41,8 +41,8 @@ class SignUp extends Component {
                 <form onSubmit={this.handleSubmit} className="white">
                     <h5 className="grey-text text-darken-3">Signup</h5>
                     <div className="input-field">
-                        <label htmlFor="email">Email</label>
-                        <input type="email" id='email' onChange={this.handleChange} />
+                        <label htmlFor="user">Username</label>
+                        <input type="text" id='user' onChange={this.handleChange} />
                     </div>
                     <div className="input-field">
                         <label htmlFor="password">Password</label>
