@@ -40,7 +40,9 @@
 //     };
 import React from 'react';
 const axios = require('axios');
-const oauth = require('axios-oauth-client');
+// const oauth = require('axios-oauth-client');
+
+
 
 export default class Signin extends React.Component {
     
@@ -68,63 +70,67 @@ export default class Signin extends React.Component {
             })
             .then(res => {
                 localStorage.setItem('token', res.data.access_token);
-                this.props.history.push('/users');
+                this.props.history.push('/dashboard');
 
             })
             .catch(err => console.dir(err));
         e.preventDefault();
     }
-    render() {
-        return (
-            <form onSubmit={this.handleSubmit}>
-                <input 
-                    type="text" 
-                    name="username" 
-                    value={this.state.username} 
-                    onChange={this.handleChange} 
-                    required 
-                />
-                <input 
-                    type="password" 
-                    name="password" 
-                    value={this.state.password} 
-                    onChange={this.handleChange} 
-                    required 
-                />
-                <button>Submit</button>
-            </form>
-        );
-
-    }
-
     // render() {
     //     return (
-    //         <div className='container'>
-    //             <form onSubmit={this.handleSignin} className="white">
-    //                 <h5 className="grey-text text-darken-3">Sign In</h5>
-    //                 <div className="input-field">
-    //                     <label htmlFor="user">Username</label>
-    //                     <input 
-    //                         type="text" 
-    //                         id='user' 
-    //                         onChange={this.handleChange} 
-    //                     />
-    //                 </div>
-    //                 <div className="input-field">
-    //                     <label htmlFor="password">Password</label>
-    //                     <input 
-    //                         type="password" 
-    //                         id='password' 
-    //                         onChange={this.handleChange} 
-    //                     />
-    //                 </div>
-    //                 <div className="input-field">
-    //                     <button className="btn pink lighten-1 z-depth-0 ">sign in</button>
-    //                 </div>
-    //             </form>
-    //         </div>
-    //     )
+    //         <form onSubmit={this.handleSubmit}>
+    //             <input 
+    //                 type="text" 
+    //                 name="username" 
+    //                 value={this.state.username} 
+    //                 onChange={this.handleChange} 
+    //                 required 
+    //             />
+    //             <input 
+    //                 type="password" 
+    //                 name="password" 
+    //                 value={this.state.password} 
+    //                 onChange={this.handleChange} 
+    //                 required 
+    //             />
+    //             <button>Submit</button>
+    //         </form>
+    //     );
+
     // }
+
+    render() {
+        return (
+            <div className='container'>
+                <form onSubmit={this.handleSubmit} className="white">
+                    <h5 className="grey-text text-darken-3">Sign In</h5>
+                    <div className="input-field">
+                        <label htmlFor="user">Username</label>
+                        <input 
+                            type="text" 
+                            name="username" 
+                            value={this.state.username} 
+                            onChange={this.handleChange} 
+                            required 
+                        />
+                    </div>
+                    <div className="input-field">
+                        <label htmlFor="password">Password</label>
+                        <input 
+                            type="password" 
+                            name="password" 
+                            value={this.state.password} 
+                            onChange={this.handleChange} 
+                            required 
+                        />
+                    </div>
+                    <div className="input-field">
+                        <button className="btn pink lighten-1 z-depth-0 ">sign in</button>
+                    </div>
+                </form>
+            </div>
+        )
+    }
 }
 
 // function mapDispatchToProps(dispatch) {

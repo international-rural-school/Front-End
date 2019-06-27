@@ -6,26 +6,26 @@ export const SIGNING_IN = "SIGNING_IN";
 export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
 export const SIGNIN_FAIL = "SIGNIN_FAIL";
 
-export const signin = credentials => dispatch => {
-  localStorage.setItem('username', credentials.username);
-  dispatch({
-    type: SIGNING_IN
-  });
-  axios
-    .post(
-      "ruralschoolapp.herokuapp.com/oauth/token",
-      `grant_type=password&username=${credentials.username}&password=${credentials.password}`,
-      {
-        headers: {
-          Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
-          'content-Type': 'application/x-www-form-urlencoded'
-        }
-      }
-    )
-    .then(res => {
-      localStorage.setItem('token', res.data.access_token);
-      this.props.history.push('/users');
-    })
+// export const signin = credentials => dispatch => {
+//   localStorage.setItem('username', credentials.username);
+//   dispatch({
+//     type: SIGNING_IN
+//   });
+//   axios
+//     .post(
+//       "ruralschoolapp.herokuapp.com/oauth/token",
+//       `grant_type=password&username=${credentials.username}&password=${credentials.password}`,
+//       {
+//         headers: {
+//           Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
+//           'content-Type': 'application/x-www-form-urlencoded'
+//         }
+//       }
+//     )
+//     .then(res => {
+//       localStorage.setItem('token', res.data.access_token);
+//       this.props.history.push('/users');
+//     })
     // .then(res => {
     //   console.log(res.data);
     //   localStorage.setItem("token", res.data.access_token);
@@ -35,14 +35,14 @@ export const signin = credentials => dispatch => {
     //     payload: res.data
     //   });
     // })
-    .catch(err => console.dir(err));
+    // .catch(err => console.dir(err));
     // .catch(err =>
     //   dispatch({
     //     type: SIGNIN_FAIL,
     //     payload: err.response.data
     //   })
     // );
-};
+// };
 
 export const SIGNINGUP = "SIGNINGUP";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
@@ -53,10 +53,7 @@ export const signup = user => dispatch => {
     type: SIGNINGUP
   });
   axios
-    .post(
-      "https://ruralschoolapp.herokuapp.com/users/user",
-      user
-    )
+    .post("https://ruralschoolapp.herokuapp.com/users/user", user)
     .then(res => {
       dispatch({
         type: SIGNUP_SUCCESS,

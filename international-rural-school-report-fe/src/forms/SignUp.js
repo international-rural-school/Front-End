@@ -4,7 +4,7 @@ import { signup } from '../actions';
 
 class SignUp extends Component {
     state = {
-        email: '',
+        username: '',
         password: '',
         firstName: '',
         lastName: ''
