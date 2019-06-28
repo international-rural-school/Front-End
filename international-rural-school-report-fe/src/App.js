@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 import SignIn from './forms/SignIn';
+import SignUp from './forms/SignUp';
 import NavTop from './components/NavTop';
 import Dashboard from './components/Dashboard';
 import { connect } from 'react-redux'
@@ -21,7 +22,10 @@ class App extends Component {
           (
             <Route path='/dashboard' component={Dashboard} />
           ):(
+            <div>
             <Route path='/signin' component={SignIn} />
+            <Route path='/signup' component={SignUp} />
+            </div>
           )
           }
             

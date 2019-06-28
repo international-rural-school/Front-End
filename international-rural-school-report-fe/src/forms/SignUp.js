@@ -6,8 +6,7 @@ class SignUp extends Component {
     state = {
         username: '',
         password: '',
-        firstName: '',
-        lastName: ''
+      
     }
 
 
@@ -48,14 +47,7 @@ class SignUp extends Component {
                         <label htmlFor="password">Password</label>
                         <input type="password" id='password' onChange={this.handleChange} />
                     </div>
-                    <div className="input-field">
-                        <label htmlFor="firstName">First Name</label>
-                        <input type="text" id='firstName' onChange={this.handleChange} />
-                    </div>
-                    <div className="input-field">
-                        <label htmlFor="lastName">Last Name</label>
-                        <input type="text" id='lastName' onChange={this.handleChange} />
-                    </div>
+                  
                     <div>
                     <label htmlFor="admin">
                         <p>Are you a School Admin or a Board Member?</p>
