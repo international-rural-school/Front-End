@@ -2,35 +2,16 @@ import axios from "axios";
 
 export const SUCCESS = "SUCCESS";
 export const ERROR = "ERROR";
-
 export const SIGNING_IN = "SIGNING_IN";
 export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
 export const SIGNIN_FAIL = "SIGNIN_FAIL";
 
-export const signin = user => dispatch => {
+export const signin = token => dispatch => {
   dispatch({
-    type: SIGNING_IN
-  });
-  axios
-    .post(
-      // "url/login",
-      user
-    )
-    .then(res => {
-      console.log(res.data);
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("authLevel", res.data.user.authLevel);
-      dispatch({
-        type: SIGNIN_SUCCESS,
-        payload: res.data
-      });
-    })
-    .catch(err =>
-      dispatch({
-        type: SIGNIN_FAIL,
-        payload: err.response.data
-      })
-    );
+    type: SIGNIN_SUCCESS,
+    payload: token
+  })
+  
 };
 
 export const SIGNINGUP = "SIGNINGUP";
@@ -42,10 +23,7 @@ export const signup = user => dispatch => {
     type: SIGNINGUP
   });
   axios
-    .post(
-      // "url/signup",
-      user
-    )
+    .post("https://ruralschoolapp.herokuapp.com/users/user", user)
     .then(res => {
       dispatch({
         type: SIGNUP_SUCCESS,
@@ -65,7 +43,7 @@ export const FETCHING_ISSUES = "FETCHING_ISSUES";
 export const getIssues = () => dispatch => {
   dispatch({ type: FETCHING_ISSUES });
   axios
-    // .get("url/issues")
+    .get("https://ruralschoolapp.herokuapp.com/error")
     .then(res => {
       console.log(res);
       dispatch({ type: SUCCESS, payload: res.data });
@@ -76,6 +54,7 @@ export const getIssues = () => dispatch => {
     });
 };
 
+
 export const ADDING_ISSUE = "ADDING_ISSUE";
 export const DELETING_ISSUE = "DELETING_ISSUE";
 
@@ -83,9 +62,7 @@ export const addIssue = issue => dispatch => {
   dispatch({ type: ADDING_ISSUE });
   console.log("issue", issue);
   axios
-    // .post("url/issues", 
-      issue
-    )
+    .post("https://ruralschoolapp.herokuapp.com/error", issue)
     .then(res => {
       dispatch({ type: SUCCESS, payload: res.data });
       console.log(res);
@@ -98,7 +75,7 @@ export const addIssue = issue => dispatch => {
 export const deleteIssue = id => dispatch => {
   dispatch({ type: DELETING_ISSUE });
   axios
-    // .delete(`url/issues/${id}`)
+    .delete(`https://ruralschoolapp.herokuapp.com/error/${id}`)
     .then(res => {
       dispatch({ type: SUCCESS, payload: res.data });
     })
@@ -117,7 +94,7 @@ export function editIssue(id, issue) {
     console.log(id, issue);
     axios
       .put(
-        // `url/issues/${id}`,
+        `https://ruralschoolapp.herokuapp.com/error/${id}`,
         issue
       )
       .then(response => {

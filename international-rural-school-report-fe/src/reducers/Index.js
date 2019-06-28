@@ -13,7 +13,7 @@ import {
     EDITING,
     EDITED,
     FAILURE
-  } from '../actions/Index';
+  } from '../actions';
   
   export const initialState = {
     user: {},
@@ -63,8 +63,7 @@ import {
         return {
           ...state,
           signingIn: false,
-          token: action.payload.token,
-          user: action.payload.user
+          token: action.payload,
         };
       case SIGNIN_FAIL:
         return {
