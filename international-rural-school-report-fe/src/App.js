@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 import SignIn from './forms/SignIn';
-import SignUp from './forms/SignUp';
 import NavTop from './components/NavTop';
 import Dashboard from './components/Dashboard';
+import { connect } from 'react-redux'
 
 
 class App extends Component {
@@ -14,28 +14,29 @@ class App extends Component {
       <div>
         <div> 
           <NavTop />
-          <Route
-            exact
-            path="/"
-            render={() =>
-              localStorage.getItem("token") ? (
-                <Dashboard />
-              ) : (
-                <Redirect to="/signin" />
-              )
-            }
-          />
         </div>
         <div>
-          <Switch>
-            <Route path='/signin' component={SignIn} />
-            <Route path='/signup' component={SignUp} />
+
+          {this.props.token ? 
+          (
             <Route path='/dashboard' component={Dashboard} />
-          </Switch>
+          ):(
+            <Route path='/signin' component={SignIn} />
+          )
+          }
+            
         </div>
       </div>
     );
   }
 }
 
-export default App;
+const mstp = state => {
+  return ({
+    token: state.token
+  })
+}
+
+export default connect(
+  mstp
+)(App)

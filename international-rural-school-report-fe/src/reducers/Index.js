@@ -12,7 +12,8 @@ import {
     DELETING_ISSUE,
     EDITING,
     EDITED,
-    FAILURE
+    FAILURE,
+    LOGOUT
   } from '../actions';
   
   export const initialState = {
@@ -118,6 +119,13 @@ import {
           ...state,
           error: null
         };
+      case LOGOUT:
+        localStorage.clear();
+        return {
+          ...state,
+          token: ''
+        }
+
       default:
         return state;
     }
