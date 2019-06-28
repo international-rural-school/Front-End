@@ -6,6 +6,7 @@ import SignIn from './forms/SignIn';
 import SignUp from './forms/SignUp';
 import NavTop from './components/NavTop';
 import Dashboard from './components/Dashboard';
+import { connect } from 'react-redux'
 
 
 class App extends Component {
@@ -14,28 +15,32 @@ class App extends Component {
       <div>
         <div> 
           <NavTop />
-          <Route
-            exact
-            path="/"
-            render={() =>
-              localStorage.getItem("token") ? (
-                <Dashboard />
-              ) : (
-                <Redirect to="/signin" />
-              )
-            }
-          />
         </div>
         <div>
-          <Switch>
+
+          {this.props.token ? 
+          (
+            <Route path='/dashboard' component={Dashboard} />
+          ):(
+            <div>
             <Route path='/signin' component={SignIn} />
             <Route path='/signup' component={SignUp} />
-            <Route path='/dashboard' component={Dashboard} />
-          </Switch>
+            </div>
+          )
+          }
+            
         </div>
       </div>
     );
   }
 }
 
-export default App;
+const mstp = state => {
+  return ({
+    token: state.token
+  })
+}
+
+export default connect(
+  mstp
+)(App)

@@ -6,12 +6,22 @@ export const SIGNING_IN = "SIGNING_IN";
 export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
 export const SIGNIN_FAIL = "SIGNIN_FAIL";
 
+
+
 export const signin = token => dispatch => {
   dispatch({
     type: SIGNIN_SUCCESS,
     payload: token
   })
   
+};
+
+export const LOGOUT = "LOGOUT";
+
+export const signOut = () => {
+  return {
+    type: LOGOUT 
+  }
 };
 
 export const SIGNINGUP = "SIGNINGUP";
